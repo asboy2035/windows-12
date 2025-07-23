@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="" />
+    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="initial code">
+      <change afterPath="$PROJECT_DIR$/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +20,8 @@
       <list>
         <option value="Sass File" />
         <option value="Vue Composition API Component" />
+        <option value="MarkDown File" />
+        <option value="Apache-2.0" />
       </list>
     </option>
   </component>
@@ -47,7 +54,7 @@
     "nodejs_package_manager_path": "npm",
     "npm.npm dev.executor": "Run",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Users/ash/IdeaProjects/windows-12/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -67,11 +74,18 @@
       <recent name="$PROJECT_DIR$/src/images" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.npm dev">
-    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:5173">
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
       <method v="2" />
     </configuration>
-    <configuration name="npm dev" type="js.build_tools.npm">
+    <configuration name="dev" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
@@ -81,6 +95,10 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="npm.dev" />
+      <item itemvalue="npm.build" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -98,11 +116,24 @@
       <option name="presentableId" value="Default" />
       <updated>1743535360667</updated>
       <workItem from="1743535360668" duration="84000" />
-      <workItem from="1753283272919" duration="9369000" />
+      <workItem from="1753283272919" duration="9650000" />
     </task>
+    <task id="LOCAL-00001" summary="initial code">
+      <option name="closed" value="true" />
+      <created>1753292744720</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753292744720</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial code" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial code" />
   </component>
 </project>

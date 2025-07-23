@@ -1,8 +1,16 @@
 {
   "name": "windows-12",
-  "version": "0.0.0",
-  "private": true,
+  "description": "Windows 12 for web",
+  "author": {
+    "name": "ash",
+    "email": "ash@asboy2035.com",
+    "url": "https://asboy2035.com/"
+  },
+
+  "version": "0.0.1",
+  "private": false,
   "type": "module",
+
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -10,6 +18,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build"
   },
+
   "dependencies": {
     "@iconify/vue": "^5.0.0",
     "sass": "^1.89.2",
