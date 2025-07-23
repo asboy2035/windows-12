@@ -1,0 +1,33 @@
+:root
+  --uiTextPrimary: black
+  --uiBackground: rgba(147, 147, 147, 0.4)
+  --uiBackgroundAbsolute: white
+  --uiAccent: #6618f1
+
+  --windowBackground: #d2d2d2
+  --windowBlurColor: rgba(190, 190, 190, 0.6)
+  --windowBorder: #595959
+  --windowShadow: black
+
+@media (prefers-color-scheme: dark)
+  :root
+    --uiTextPrimary: white
+    --uiBackground: rgba(68, 68, 68, 0.4)
+    --uiBackgroundAbsolute: black
+    --uiAccent: #8851ea
+
+    --windowBackground: #252525
+    --windowBlurColor: rgba(45, 45, 45, 0.6)
+    --windowBorder: #7c7c7c
+    --windowShadow: black
+
+// Sass aliases
+$uiTextPrimary: var(--uiTextPrimary)
+$uiBackground: var(--uiBackground)
+$uiBackgroundAbsolute: var(--uiBackgroundAbsolute)
+$uiAccent: var(--uiAccent)
+
+$windowBackground: var(--windowBackground)
+$windowBlurColor: var(--windowBlurColor)
+$windowBorder: var(--windowBorder)
+$windowShadow: var(--windowShadow)
