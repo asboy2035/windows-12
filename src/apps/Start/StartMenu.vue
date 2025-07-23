@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <window disable-movable class="startMenu" visual-effect="blur">
+  <window disable-movable class="startMenu" visual-effect="blur" hide-management-buttons>
     <taskbar-icon class="spaceBetween">
       <h-stack class="spaced">
         <img src="@/icons/Avatar.png" class="avatar">

@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
+  import HStack from '@/components/HStack.vue'
+  import {Icon} from '@iconify/vue'
 
   const props = defineProps<{
     transparent?: boolean
@@ -7,6 +9,7 @@
     frameless?: boolean
     resizable?: boolean
     disableMovable?: boolean
+    hideManagementButtons?: boolean
   }>()
 
   const top = ref(16)
@@ -46,11 +49,23 @@
 <template>
   <div
     class="window windowBackground"
-    :class="{ transparent: transparent, framed: !frameless, blurBackground: visualEffect === 'blur', resizer: resizable }"
+    :class="{ transparent: transparent, framed: !frameless, blurBackground: visualEffect === 'blur', resizer: resizable, topSafeArea: !hideManagementButtons }"
     :style="{ top: top + 'px', left: left + 'px' }"
     @mousedown="onMouseDown"
   >
     <slot />
+
+    <h-stack v-if="!hideManagementButtons" class="windowManagement">
+      <button>
+        <Icon icon="fluent:minimize-16-filled" />
+      </button>
+      <button>
+        <Icon icon="fluent:square-12-regular" />
+      </button>
+      <button class="closeButton">
+        <Icon icon="fluent:dismiss-16-filled" />
+      </button>
+    </h-stack>
   </div>
 </template>
 
@@ -62,10 +77,37 @@
     display: flex
     position: fixed
     background: colors.$windowBackground
+    width: fit-content
+    height: fit-content
     min-width: 15rem
     min-height: 7rem
     padding: 0.75rem
     border-radius: var(--windowRadius)
+
+    &.topSafeArea
+      padding-top: 2.5rem
+
+    .windowManagement
+      position: absolute
+      top: 0.25rem
+      right: 0.25rem
+      z-index: 10
+
+      button
+        --buttonRadius: var(--windowRadius)
+
+        background: transparent
+        backdrop-filter: none
+        padding: 0.15rem
+
+        svg
+          scale: 0.8
+
+        &::after
+          border: none
+
+        &.closeButton:hover
+          background: red
 
   .blurBackground
     background: colors.$windowBlurColor
@@ -81,6 +123,7 @@
       right: 0
       border-radius: var(--windowRadius)
       opacity: 0.3
+      pointer-events: none
 
     &::after
       border: 0.1rem colors.$windowBorder solid

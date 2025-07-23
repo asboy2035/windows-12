@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="initial code">
-      <change afterPath="$PROJECT_DIR$/LICENSE.txt" afterDir="false" />
+    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="update meta">
+      <change afterPath="$PROJECT_DIR$/src/apps/Settings/SettingsApp.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/SidebarItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/Wallpaper-Light.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/styles/button.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/Start/StartMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/Start/StartMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/Taskbar/Taskbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/Taskbar/Taskbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Desktop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Desktop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/global.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Window.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Window.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,16 +25,28 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Sass File" />
-        <option value="Vue Composition API Component" />
         <option value="MarkDown File" />
         <option value="Apache-2.0" />
+        <option value="Sass File" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "asboy2035"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://asboy2035@github.com/asboy2035/windows-12.git",
+    "accountId": "3a099e4d-a960-4419-accc-5f28f60b6a13"
+  }
+}]]></component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="sEhHzsBb" />
   </component>
@@ -44,7 +63,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/ash/IdeaProjects/windows-12/src/icons",
+    "last_opened_file_path": "/Users/ash/IdeaProjects/windows-12/src/images",
     "list.type.of.created.stylesheet": "Sass",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -52,6 +71,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.dev.executor": "Run",
     "npm.npm dev.executor": "Run",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -66,6 +87,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/images" />
       <recent name="$PROJECT_DIR$/src/icons" />
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
@@ -74,7 +96,7 @@
       <recent name="$PROJECT_DIR$/src/images" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -116,7 +138,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743535360667</updated>
       <workItem from="1743535360668" duration="84000" />
-      <workItem from="1753283272919" duration="9650000" />
+      <workItem from="1753283272919" duration="13671000" />
     </task>
     <task id="LOCAL-00001" summary="initial code">
       <option name="closed" value="true" />
@@ -126,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753292744720</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update meta">
+      <option name="closed" value="true" />
+      <created>1753292995408</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1753292995408</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +164,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial code" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial code" />
+    <MESSAGE value="update meta" />
+    <option name="LAST_COMMIT_MESSAGE" value="update meta" />
   </component>
 </project>

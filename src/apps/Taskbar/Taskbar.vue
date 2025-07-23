@@ -28,7 +28,7 @@
 </script>
 
 <template>
-  <Window disable-movable id="taskbar" visual-effect="blur">
+  <Window disable-movable id="taskbar" visual-effect="blur" hide-management-buttons>
     <taskbar-icon>
       <img src="@/icons/Cloud.png" alt="Weather Icon">
       <v-stack>
