@@ -13,6 +13,7 @@
   const date = ref('')
   const showingStart = ref(false)
   const startMenuRef = ref<HTMLElement | null>(null)
+  const hideAndShow = ref(false)
 
   const updateTimeAndDate = () => {
     const now = new Date()
@@ -46,51 +47,59 @@
 </script>
 
 <template>
-  <Window
-    disable-movable
-    id="taskbar"
-    visual-effect="blur"
-    hide-management-buttons
-    :z-index="9998"
-  >
-    <taskbar-icon>
-      <img src="/icons/Cloud.png" alt="Weather Icon">
-      <v-stack>
-        <p class="caption">Cloudy</p>
-        <p class="caption light">26°</p>
-      </v-stack>
-    </taskbar-icon>
-
-    <h-stack>
-      <taskbar-icon @click="toggleStart">
-        <img src="/icons/Start.png">
-      </taskbar-icon>
-
-      <taskbar-icon
-        v-for="app in appsStore.openApps"
-        :key="app.id"
-        :running="!app.isMinimized"
-        @click="focusApp(app.id)"
-      >
-        <img :src="app.app.icon" :alt="app.app.name">
-      </taskbar-icon>
-    </h-stack>
-
-    <h-stack>
+  <div class="taskbarWrapper">
+    <Window
+      disable-movable
+      id="taskbar"
+      visual-effect="blur"
+      hide-management-buttons
+      :z-index="9998"
+      :class="{ hideAndShow: hideAndShow }"
+    >
       <taskbar-icon>
-        <h-stack class="spaced">
-          <v-stack>
-            <p class="caption">{{ time }}</p>
-            <p class="caption light">{{ date }}</p>
-          </v-stack>
-
-          <Icon icon="fluent:alert-snooze-20-filled" />
-        </h-stack>
+        <img src="/icons/Cloud.png" alt="Weather Icon">
+        <v-stack>
+          <p class="caption">Cloudy</p>
+          <p class="caption light">26°</p>
+        </v-stack>
       </taskbar-icon>
-    </h-stack>
-  </Window>
 
-  <start-menu ref="startMenuRef" :class="{ hidden: !showingStart }" />
+      <h-stack>
+        <taskbar-icon @click="toggleStart">
+          <img src="/icons/Start.png">
+        </taskbar-icon>
+
+        <taskbar-icon
+          v-for="app in appsStore.openApps"
+          :key="app.id"
+          :running="!app.isMinimized"
+          @click="focusApp(app.id)"
+        >
+          <img :src="app.app.icon" :alt="app.app.name">
+        </taskbar-icon>
+      </h-stack>
+
+      <h-stack>
+        <taskbar-icon @click="hideAndShow = !hideAndShow" tooltip="Hide and Show Taskbar">
+          <Icon icon="fluent:arrow-bidirectional-up-down-16-regular" />
+        </taskbar-icon>
+        <taskbar-icon>
+          <h-stack class="spaced">
+            <v-stack>
+              <p class="caption">{{ time }}</p>
+              <p class="caption light">{{ date }}</p>
+            </v-stack>
+
+            <Icon icon="fluent:alert-snooze-20-filled" />
+          </h-stack>
+        </taskbar-icon>
+      </h-stack>
+
+    </Window>
+
+    <div v-if="hideAndShow" id="taskbarEnableArea" />
+    <start-menu ref="startMenuRef" :class="{ hidden: !showingStart }" />
+  </div>
 </template>
 
 
@@ -116,4 +125,23 @@
     padding: 0.5rem 0.45rem
     z-index: 4
     animation: none !important
+    transition: 0.2s ease
+
+    &.hideAndShow
+      transform: translateX(-50%) translateY(calc(100% + 4rem))
+
+    &:hover
+      transform: translateX(-50%)
+
+  .taskbarWrapper:has(#taskbarEnableArea:hover)
+    #taskbar
+      transform: translateX(-50%)
+
+  #taskbarEnableArea
+    position: fixed
+    display: flex
+    bottom: 0
+    left: 0
+    right: 0
+    height: 1.5rem
 </style>

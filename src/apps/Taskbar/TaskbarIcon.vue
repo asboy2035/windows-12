@@ -1,12 +1,25 @@
 <script setup lang="ts">
   defineProps<{
-    running?: boolean,
+    running?: boolean
     background?: boolean
+    tooltip?: string
   }>()
 </script>
 
 <template>
-  <div class="taskbarIcon" :class="{ running: running, taskbarIconBg: background }">
+  <div
+    class="taskbarIcon"
+    :class="{
+      running: running,
+      taskbarIconBg: background }"
+  >
+    <div
+      class="tooltip"
+      v-if="tooltip"
+    >
+      <p>{{ tooltip }}</p>
+    </div>
+
     <slot />
   </div>
 </template>
@@ -16,6 +29,7 @@
 
   ::v-deep(img)
     height: 2rem
+
   ::v-deep(svg)
     height: 1.25rem
     width: 1.25rem
@@ -34,6 +48,24 @@
     transition: 0.2s ease
     border: 0.1rem transparent solid
 
+    .tooltip
+      background: colors.$windowBackground
+      padding: 0.75rem
+      display: none
+      position: absolute
+      transform: translateY(-100%)
+      border-radius: 0.75rem
+      width: fit-content
+      min-width: 5rem
+      animation: fadeIn 0.3s ease
+
+      p
+        font-size: 0.75rem
+
+    &:hover
+      .tooltip
+        display: flex
+
     &.taskbarIconBg, &:hover
       background: colors.$uiBackground
       border: 0.1rem colors.$uiBackground solid
@@ -49,4 +81,10 @@
       width: 60%
       background: colors.$uiAccent
       border-radius: 1rem
+
+  @keyframes fadeIn
+    0%
+      opacity: 0
+    100%
+      opacity: 1
 </style>
