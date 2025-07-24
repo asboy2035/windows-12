@@ -5,6 +5,7 @@
   import HStack from '@/components/HStack.vue'
   import {Icon} from '@iconify/vue'
   import VStack from '@/components/VStack.vue'
+  import {ref} from 'vue'
 
   const appsStore = useAppsStore()
 
