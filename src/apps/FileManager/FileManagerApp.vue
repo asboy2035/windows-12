@@ -10,6 +10,7 @@
   import SidebarItem from '@/components/Sidebar/SidebarItem.vue'
   import ContextMenu from '@/components/ContextMenu.vue'
   import {Icon} from '@iconify/vue'
+  import { getFileIconPath } from '@/utils/fileIcons'
 
   const fileManagerStore = useFileManagerStore()
   const appsStore = useAppsStore()
@@ -71,9 +72,15 @@
     currentFolderContent.value = fileManagerStore.getFolderContent(currentPath.value)
   })
 
+  const topLevelFolders = ['Home', 'Documents', 'Desktop', 'Downloads', 'Apps', 'System', 'Music', 'Movies', 'Pictures', 'Local Disk (C:)']
+
   function openFolder(folderName: string) {
-    currentPath.value = folderName
-    currentFolderContent.value = fileManagerStore.getFolderContent(folderName)
+    if (topLevelFolders.includes(folderName)) {
+      currentPath.value = folderName
+    } else {
+      currentPath.value = `${currentPath.value}/${folderName}`
+    }
+    currentFolderContent.value = fileManagerStore.getFolderContent(currentPath.value)
   }
 
   function openFile(file: IFile) {
@@ -90,9 +97,9 @@
   })
 
   function navigateToPath(index: number) {
-    const newPath = pathSegments.value.slice(0, index + 1).join('/')
-    currentPath.value = newPath
-    currentFolderContent.value = fileManagerStore.getFolderContent(newPath)
+    const newPathSegments = pathSegments.value.slice(0, index + 1)
+    currentPath.value = newPathSegments.join('/')
+    currentFolderContent.value = fileManagerStore.getFolderContent(currentPath.value)
   }
 
   function selectItem(item: IFile | IFolder) {
@@ -103,7 +110,7 @@
 <template>
   <Window
     :app-id="'file-manager'"
-    title="File Manager"
+    title="File Explorer"
     visual-effect="blur"
     resizable
   >
@@ -114,6 +121,7 @@
         <p class="caption light">Files</p>
         <SidebarItem icon="fluent:document-16-regular" title="Documents" @click="openFolder('Documents')" />
         <SidebarItem icon="fluent:tab-desktop-16-regular" title="Desktop" @click="openFolder('Desktop')" />
+        <SidebarItem icon="fluent:arrow-download-16-regular" title="Downloads" @click="openFolder('Downloads')" />
         <SidebarItem icon="fluent:apps-16-regular" title="Apps" @click="openFolder('Apps')" />
         <SidebarItem icon="fluent:desktop-16-regular" title="System" @click="openFolder('System')" />
 
@@ -128,19 +136,23 @@
 
       <VStack class="mainPanel">
         <HStack class="pathBar">
-          <span
+          <h-stack
             v-for="(segment, index) in pathSegments"
             :key="index"
             @click="navigateToPath(index)"
             class="pathSegment"
           >
-            {{ segment }}
-            <span v-if="index < pathSegments.length - 1"> > </span>
-          </span>
+            <h2>{{ segment }}</h2>
+            <icon
+              class="pathSegmentIcon"
+              icon="fluent:chevron-right-16-regular"
+              v-if="index < pathSegments.length - 1"
+            />
+          </h-stack>
         </HStack>
 
         <HStack class="toolbar">
-          <h-stack>
+          <h-stack class="spaced">
             <button @click="viewMode = 'list'">
               <icon icon="fluent:list-bar-16-regular" />
             </button>
@@ -165,7 +177,7 @@
             @contextmenu="openContextMenu($event, item)"
           >
             <h-stack>
-              <img :src="item.imagePath ? item.imagePath : (item.type === 'folder' ? '/icons/Folder.png' : '/icons/File.png')" class="itemIcon" />
+              <img :src="getFileIconPath(item)" class="itemIcon" />
               <span>{{ item.name }}</span>
               <span v-if="item.type === 'file'">.{{ item.extension }}</span>
             </h-stack>
@@ -183,11 +195,8 @@
             @dblclick="item.type === 'folder' ? openFolder(item.name) : openFile(item as IFile)"
             @contextmenu="openContextMenu($event, item)"
           >
-            <img :src="item.imagePath ? item.imagePath : (item.type === 'folder' ? '/icons/Folder.png' : '/icons/File.png')" class="itemIcon" />
-            <h-stack>
-              <span>{{ item.name }}</span>
-              <span v-if="item.type === 'file'">.{{ item.extension }}</span>
-            </h-stack>
+            <img :src="getFileIconPath(item)" class="itemIcon" />
+            <span class="fileName">{{ item.name }}</span>
             <span v-if="item.type === 'file'" class="light">{{ new Date(item.date).toLocaleDateString() }}</span>
           </v-stack>
         </div>
@@ -217,11 +226,16 @@
 
   .pathBar
     justify-content: flex-start
+    align-items: center
 
     .pathSegment
-      font-size: 2rem
-      font-weight: 500
       cursor: pointer
+      display: flex
+      justify-content: center
+
+      .pathSegmentIcon
+        width: 2rem
+        height: 1.5rem
 
   .toolbar
     padding: 0.5rem 0
@@ -241,6 +255,12 @@
       padding: 0.5rem 0
       transition: 0.2s ease
       cursor: pointer
+
+      .fileName
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        max-width: calc(100% - 4rem)
 
       .itemIcon
         width: 6rem
