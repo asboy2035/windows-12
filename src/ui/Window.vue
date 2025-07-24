@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref, onMounted, computed, watch } from 'vue'
   import { useAppsStore, type OpenApp } from '@/stores/apps'
+  import { useTaskbarStore } from '@/stores/taskbar'
   import HStack from '@/components/HStack.vue'
   import { Icon } from '@iconify/vue'
 
@@ -17,6 +18,7 @@
   }>()
 
   const appsStore = useAppsStore()
+  const taskbarStore = useTaskbarStore()
 
   const top = ref(props.window?.y || 0)
   const left = ref(props.window?.x || 0)
@@ -47,7 +49,7 @@
     top: props.window ? `${top.value}px` : undefined,
     left: props.window ? `${left.value}px` : undefined,
     width: isMaximized.value ? '100vw' : props.window ? `${width.value}px` : undefined,
-    height: isMaximized.value ? '100vh' : props.window ? `${height.value}px` : undefined,
+    height: isMaximized.value ? (taskbarStore.showTaskbar ? 'calc(100vh - 3.5rem - 5rem)' : '100vh') : props.window ? `${height.value}px` : undefined,
     zIndex: props.window?.zIndex || props.zIndex,
     display: props.window?.isMinimized ? 'none' : 'flex',
   }))
@@ -175,6 +177,7 @@
       maximized: isMaximized,
       closing: isClosing,
       minimizing: isMinimizing,
+      hideTaskbar: !taskbarStore.showTaskbar && isMaximized,
     }"
     :style="windowStyle"
     @mousedown="onMouseDown"
@@ -222,15 +225,18 @@
     padding: 0.75rem
     border-radius: var(--windowRadius)
     animation: openWindow 0.2s ease forwards
+    transition: 0.2s ease
 
     &.maximized
       width: calc(100vw - 1.5rem) !important
-      height: calc(100vh - 3.5rem - 5rem) !important
+      height: calc(100vh - 3.25rem - 5rem) !important
       top: 0 !important
       left: 0 !important
-      transition: 0.3s ease
       border: none
       --windowRadius: 0 !important
+
+    &.maximized.hideTaskbar
+      height: calc(100vh - 3.25rem) !important
 
     &.closing
       animation: closeWindow 0.3s ease forwards !important
@@ -326,58 +332,58 @@
     z-index: 10
 
     &.top
-      top: -5px
-      left: 10px
-      right: 10px
-      height: 10px
+      top: -0.5rem
+      left: 1rem
+      right: 1rem
+      height: 1rem
       cursor: ns-resize
 
     &.bottom
-      bottom: -5px
-      left: 10px
-      right: 10px
-      height: 10px
+      bottom: -0.5rem
+      left: 1rem
+      right: 1rem
+      height: 1rem
       cursor: ns-resize
 
     &.left
-      left: -5px
-      top: 10px
-      bottom: 10px
-      width: 10px
+      left: -0.5rem
+      top: 1rem
+      bottom: 1rem
+      width: 1rem
       cursor: ew-resize
 
     &.right
-      right: -5px
-      top: 10px
-      bottom: 10px
-      width: 10px
+      right: -0.5rem
+      top: 1rem
+      bottom: 1rem
+      width: 1rem
       cursor: ew-resize
 
     &.top-left
-      top: -5px
-      left: -5px
-      width: 10px
-      height: 10px
+      top: -0.5rem
+      left: -0.5rem
+      width: 1rem
+      height: 1rem
       cursor: nwse-resize
 
     &.top-right
-      top: -5px
-      right: -5px
-      width: 10px
-      height: 10px
+      top: -0.5rem
+      right: -0.5rem
+      width: 1rem
+      height: 1rem
       cursor: nesw-resize
 
     &.bottom-left
-      bottom: -5px
-      left: -5px
-      width: 10px
-      height: 10px
+      bottom: -0.5rem
+      left: -0.5rem
+      width: 1rem
+      height: 1rem
       cursor: nesw-resize
 
     &.bottom-right
-      bottom: -5px
-      right: -5px
-      width: 10px
-      height: 10px
+      bottom: -0.5rem
+      right: -0.5rem
+      width: 1rem
+      height: 1rem
       cursor: nwse-resize
 </style>

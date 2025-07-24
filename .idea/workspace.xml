@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="fix lock tab for fullscreen">
+    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="add hide and show taskbar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apps/Taskbar/Taskbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/Taskbar/Taskbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apps/Taskbar/TaskbarIcon.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/Taskbar/TaskbarIcon.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Window.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Window.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +137,7 @@
       <workItem from="1743535360668" duration="84000" />
       <workItem from="1753283272919" duration="13740000" />
       <workItem from="1753342119195" duration="10930000" />
-      <workItem from="1753353283308" duration="2123000" />
+      <workItem from="1753353283308" duration="3436000" />
     </task>
     <task id="LOCAL-00001" summary="initial code">
       <option name="closed" value="true" />
@@ -195,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753353306518</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add hide and show taskbar">
+      <option name="closed" value="true" />
+      <created>1753358635629</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1753358635629</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +217,7 @@
     <MESSAGE value="add missing files" />
     <MESSAGE value="add missing ref import" />
     <MESSAGE value="fix lock tab for fullscreen" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix lock tab for fullscreen" />
+    <MESSAGE value="add hide and show taskbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="add hide and show taskbar" />
   </component>
 </project>

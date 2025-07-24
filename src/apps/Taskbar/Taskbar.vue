@@ -7,13 +7,14 @@
   import VStack from '@/components/VStack.vue'
   import {Icon} from '@iconify/vue'
   import StartMenu from '@/apps/Start/StartMenu.vue'
+  import { useTaskbarStore } from '@/stores/taskbar'
 
   const appsStore = useAppsStore()
+  const taskbarStore = useTaskbarStore()
   const time = ref('')
   const date = ref('')
   const showingStart = ref(false)
   const startMenuRef = ref<HTMLElement | null>(null)
-  const hideAndShow = ref(false)
 
   const updateTimeAndDate = () => {
     const now = new Date()
@@ -54,7 +55,7 @@
       visual-effect="blur"
       hide-management-buttons
       :z-index="9998"
-      :class="{ hideAndShow: hideAndShow }"
+      :class="{ hideAndShow: !taskbarStore.showTaskbar }"
     >
       <taskbar-icon>
         <img src="/icons/Cloud.png" alt="Weather Icon">
@@ -66,7 +67,7 @@
 
       <h-stack>
         <taskbar-icon @click="toggleStart">
-          <img src="/icons/Start.png">
+          <img src="/icons/Start.png" alt="Windows Start">
         </taskbar-icon>
 
         <taskbar-icon
@@ -80,7 +81,7 @@
       </h-stack>
 
       <h-stack>
-        <taskbar-icon @click="hideAndShow = !hideAndShow" tooltip="Hide and Show Taskbar">
+        <taskbar-icon @click="taskbarStore.toggleTaskbar" tooltip="Hide and Show Taskbar">
           <Icon icon="fluent:arrow-bidirectional-up-down-16-regular" />
         </taskbar-icon>
         <taskbar-icon>
@@ -97,7 +98,7 @@
 
     </Window>
 
-    <div v-if="hideAndShow" id="taskbarEnableArea" />
+    <div v-if="!taskbarStore.showTaskbar" id="taskbarEnableArea" />
     <start-menu ref="startMenuRef" :class="{ hidden: !showingStart }" />
   </div>
 </template>
@@ -110,7 +111,7 @@
     --taskbarHeight: 2.5rem
 
     position: fixed
-    top: calc(100vh - var(--taskbarHeight) - 2rem) !important
+    top: calc(100vh - var(--taskbarHeight) - 1.75rem) !important
     min-height: var(--taskbarHeight) !important
     height: var(--taskbarHeight)
     left: 0 !important
@@ -133,15 +134,19 @@
     &:hover
       transform: translateX(-50%)
 
-  .taskbarWrapper:has(#taskbarEnableArea:hover)
-    #taskbar
-      transform: translateX(-50%)
-
   #taskbarEnableArea
     position: fixed
     display: flex
     bottom: 0
     left: 0
     right: 0
-    height: 1.5rem
+    height: 3.5rem
+    z-index: 9996
+
+    &:hover
+      transform: translateX(-50%)
+
+  .taskbarWrapper:has(#taskbarEnableArea:hover)
+    #taskbar
+      transform: translateX(-50%)
 </style>
