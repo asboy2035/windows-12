@@ -14,6 +14,11 @@
   }
 
   const startMenuRef = ref<HTMLElement | null>(null)
+
+  function showLockScreen() {
+    document.getElementById("lockScreen")?.classList.remove("closing")
+    document.getElementById("lsBg")?.classList.remove("closing")
+  }
 </script>
 
 <template>
@@ -23,7 +28,7 @@
     class="startMenu"
     visual-effect="blur"
     hide-management-buttons
-    :z-index="9998"
+    :z-index="9997"
   >
     <taskbar-icon class="spaceBetween">
       <h-stack class="spaced">
@@ -61,8 +66,8 @@
         <Icon icon="fluent:music-note-2-16-filled" />
       </taskbar-icon>
 
-      <taskbar-icon>
-        <Icon icon="fluent:settings-32-filled" />
+      <taskbar-icon @click="showLockScreen">
+        <Icon icon="fluent:lock-closed-16-regular" />
       </taskbar-icon>
     </h-stack>
   </Window>

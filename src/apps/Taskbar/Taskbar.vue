@@ -51,7 +51,7 @@
     id="taskbar"
     visual-effect="blur"
     hide-management-buttons
-    :z-index="9999"
+    :z-index="9998"
   >
     <taskbar-icon>
       <img src="/icons/Cloud.png" alt="Weather Icon">
