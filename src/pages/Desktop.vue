@@ -1,18 +1,18 @@
 <script setup lang="ts">
-  import Window from '@/ui/Window.vue'
-  import Taskbar from '@/apps/Taskbar/Taskbar.vue'
-  import SettingsApp from '@/apps/Settings/SettingsApp.vue'
+import { useAppsStore } from '@/stores/apps'
+import Taskbar from '@/apps/Taskbar/Taskbar.vue'
+
+const appsStore = useAppsStore()
 </script>
 
 <template>
-  <settings-app />
-  <window visual-effect="blur">
-    <h3>This is a window</h3>
-  </window>
+  <component
+    v-for="app in appsStore.openApps"
+    :is="app.app.component"
+    :key="app.id"
+    :window="app"
+  />
 
   <taskbar />
 </template>
 
-<style scoped>
-
-</style>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
+  import {ref, onMounted, onBeforeUnmount} from 'vue'
+  import {useAppsStore} from '@/stores/apps'
   import Window from '@/ui/Window.vue'
   import HStack from '@/components/HStack.vue'
   import TaskbarIcon from '@/apps/Taskbar/TaskbarIcon.vue'
@@ -7,30 +8,53 @@
   import {Icon} from '@iconify/vue'
   import StartMenu from '@/apps/Start/StartMenu.vue'
 
+  const appsStore = useAppsStore()
   const time = ref('')
   const date = ref('')
   const showingStart = ref(false)
+  const startMenuRef = ref<HTMLElement | null>(null)
 
   const updateTimeAndDate = () => {
     const now = new Date()
-    time.value = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    date.value = now.toLocaleDateString([], { weekday: 'short', day: 'numeric', month: 'short' })
+    time.value = now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
+    date.value = now.toLocaleDateString([], {weekday: 'short', day: 'numeric', month: 'short'})
+  }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (showingStart.value && startMenuRef.value && !startMenuRef.value.contains(event.target as Node)) {
+      showingStart.value = false
+    }
   }
 
   onMounted(() => {
     updateTimeAndDate()
     setInterval(updateTimeAndDate, 1000)
+    document.addEventListener('mousedown', handleClickOutside)
+  })
+
+  onBeforeUnmount(() => {
+    document.removeEventListener('mousedown', handleClickOutside)
   })
 
   function toggleStart() {
     showingStart.value = !showingStart.value
   }
+
+  function focusApp(windowId: string) {
+    appsStore.focusApp(windowId)
+  }
 </script>
 
 <template>
-  <Window disable-movable id="taskbar" visual-effect="blur" hide-management-buttons>
+  <Window
+    disable-movable
+    id="taskbar"
+    visual-effect="blur"
+    hide-management-buttons
+    :z-index="9999"
+  >
     <taskbar-icon>
-      <img src="@/icons/Cloud.png" alt="Weather Icon">
+      <img src="/icons/Cloud.png" alt="Weather Icon">
       <v-stack>
         <p class="caption">Cloudy</p>
         <p class="caption light">26°</p>
@@ -38,13 +62,17 @@
     </taskbar-icon>
 
     <h-stack>
-      <taskbar-icon
-        @click="toggleStart"
-      >
-        <img src="@/icons/Start.png">
+      <taskbar-icon @click="toggleStart">
+        <img src="/icons/Start.png">
       </taskbar-icon>
-      <taskbar-icon running>
-        <img src="@/icons/Settings.png">
+
+      <taskbar-icon
+        v-for="app in appsStore.openApps"
+        :key="app.id"
+        :running="!app.isMinimized"
+        @click="focusApp(app.id)"
+      >
+        <img :src="app.app.icon" :alt="app.app.name">
       </taskbar-icon>
     </h-stack>
 
@@ -62,8 +90,10 @@
     </h-stack>
   </Window>
 
-  <start-menu :class="{ hidden: !showingStart }" />
+  <start-menu ref="startMenuRef" :class="{ hidden: !showingStart }" />
 </template>
+
+
 
 <style scoped lang="sass">
   #taskbar
@@ -85,4 +115,5 @@
     align-items: center
     padding: 0.5rem 0.45rem
     z-index: 4
+    animation: none !important
 </style>

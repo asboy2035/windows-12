@@ -4,17 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="update meta">
-      <change afterPath="$PROJECT_DIR$/src/apps/Settings/SettingsApp.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/Sidebar.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar/SidebarItem.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/Wallpaper-Light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/button.sass" afterDir="false" />
+    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="add settings wireframe">
+      <change afterPath="$PROJECT_DIR$/public/icons/Chat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icons/Notepad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/apps/Chat/AiChatApp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/Settings/SettingsApp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/Settings/SettingsApp.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apps/Start/StartMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/Start/StartMenu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apps/Taskbar/Taskbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/Taskbar/Taskbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/Avatar.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/Avatar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/Cloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/Cloud.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/Settings.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/Settings.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/icons/Start.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/Start.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Desktop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Desktop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/global.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/global.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/utilities.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/utilities.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/Window.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Window.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,24 +42,27 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "asboy2035"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;asboy2035&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://asboy2035@github.com/asboy2035/windows-12.git",
-    "accountId": "3a099e4d-a960-4419-accc-5f28f60b6a13"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://asboy2035@github.com/asboy2035/windows-12.git&quot;,
+    &quot;accountId&quot;: &quot;3a099e4d-a960-4419-accc-5f28f60b6a13&quot;
   }
-}]]></component>
+}</component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="sEhHzsBb" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="30HT03csMoKe98t5d5UBmu6ZRjT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,6 +72,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/ash/IdeaProjects/windows-12/src/images",
     "list.type.of.created.stylesheet": "Sass",
@@ -92,6 +103,7 @@
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/apps/Taskbar" />
       <recent name="$PROJECT_DIR$/src/images" />
     </key>
@@ -138,7 +150,8 @@
       <option name="presentableId" value="Default" />
       <updated>1743535360667</updated>
       <workItem from="1743535360668" duration="84000" />
-      <workItem from="1753283272919" duration="13671000" />
+      <workItem from="1753283272919" duration="13740000" />
+      <workItem from="1753342119195" duration="7160000" />
     </task>
     <task id="LOCAL-00001" summary="initial code">
       <option name="closed" value="true" />
@@ -156,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753292995408</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add settings wireframe">
+      <option name="closed" value="true" />
+      <created>1753297605999</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1753297605999</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +186,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial code" />
     <MESSAGE value="update meta" />
-    <option name="LAST_COMMIT_MESSAGE" value="update meta" />
+    <MESSAGE value="add settings wireframe" />
+    <option name="LAST_COMMIT_MESSAGE" value="add settings wireframe" />
   </component>
 </project>

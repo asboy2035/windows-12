@@ -1,16 +1,17 @@
 <script setup lang="ts">
+  import { defineProps } from 'vue'
+  import { type OpenApp } from '@/stores/apps'
+  import Window from '@/ui/Window.vue'
+  import Sidebar from '@/components/Sidebar/Sidebar.vue'
+  import SidebarItem from '@/components/Sidebar/SidebarItem.vue'
+  import VStack from '@/components/VStack.vue'
 
-import Window from '@/ui/Window.vue'
-import Sidebar from '@/components/Sidebar/Sidebar.vue'
-import SidebarItem from '@/components/Sidebar/SidebarItem.vue'
-import VStack from '@/components/VStack.vue'
+  defineProps<{ window: OpenApp }>()
 </script>
 
 <template>
-  <Window visual-effect="blur" id="settingsApp">
+  <Window :window="window" visual-effect="blur" id="settingsApp" resizable title="Settings">
     <sidebar>
-      <h1>Settings</h1>
-
       <sidebar-item
         title="Accounts"
         icon="fluent:person-shield-16-filled"
@@ -67,6 +68,7 @@ import VStack from '@/components/VStack.vue'
     </v-stack>
   </Window>
 </template>
+
 
 <style scoped lang="sass">
   #settingsApp

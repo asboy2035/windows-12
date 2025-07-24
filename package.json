@@ -6,11 +6,9 @@
     "email": "ash@asboy2035.com",
     "url": "https://asboy2035.com/"
   },
-
   "version": "0.0.1",
   "private": false,
   "type": "module",
-
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -18,9 +16,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build"
   },
-
   "dependencies": {
     "@iconify/vue": "^5.0.0",
+    "pinia": "^3.0.3",
     "sass": "^1.89.2",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"

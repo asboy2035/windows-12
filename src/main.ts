@@ -1,10 +1,12 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import '@/styles/global.sass'
 
-const Windows11App = createApp(App)
+const app = createApp(App)
 
-Windows11App
-  .use(router)
-  .mount('#app')
+app.use(createPinia())
+app.use(router)
+
+app.mount('#app')

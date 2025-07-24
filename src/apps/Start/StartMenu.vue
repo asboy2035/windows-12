@@ -1,16 +1,32 @@
 <script setup lang="ts">
+  import {useAppsStore} from '@/stores/apps'
   import Window from '@/ui/Window.vue'
   import TaskbarIcon from '@/apps/Taskbar/TaskbarIcon.vue'
   import HStack from '@/components/HStack.vue'
   import {Icon} from '@iconify/vue'
   import VStack from '@/components/VStack.vue'
+
+  const appsStore = useAppsStore()
+
+  const openApp = (appId: string) => {
+    appsStore.openApp(appId)
+  }
+
+  const startMenuRef = ref<HTMLElement | null>(null)
 </script>
 
 <template>
-  <window disable-movable class="startMenu" visual-effect="blur" hide-management-buttons>
+  <Window
+    ref="startMenuRef"
+    disable-movable
+    class="startMenu"
+    visual-effect="blur"
+    hide-management-buttons
+    :z-index="9998"
+  >
     <taskbar-icon class="spaceBetween">
       <h-stack class="spaced">
-        <img src="@/icons/Avatar.png" class="avatar">
+        <img src="/icons/Avatar.png" class="avatar">
 
         <v-stack>
           <h4>ash Ketchup</h4>
@@ -22,52 +38,15 @@
     </taskbar-icon>
 
     <div class="appsGrid">
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
-        </v-stack>
-      </taskbar-icon>
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
-        </v-stack>
-      </taskbar-icon>
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
-        </v-stack>
-      </taskbar-icon>
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
-        </v-stack>
-      </taskbar-icon>
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
-        </v-stack>
-      </taskbar-icon>
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
-        </v-stack>
-      </taskbar-icon>
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
-        </v-stack>
-      </taskbar-icon>
-      <taskbar-icon class="startApp">
-        <v-stack>
-          <img src="@/icons/Settings.png">
-          <p>Settings</p>
+      <taskbar-icon
+        v-for="app in appsStore.apps"
+        :key="app.id"
+        class="startApp"
+        @click="openApp(app.id)"
+      >
+        <v-stack class="centered">
+          <img :src="app.icon" :alt="app.name" />
+          <p>{{ app.name }}</p>
         </v-stack>
       </taskbar-icon>
     </div>
@@ -85,8 +64,10 @@
         <Icon icon="fluent:settings-32-filled" />
       </taskbar-icon>
     </h-stack>
-  </window>
+  </Window>
 </template>
+
+
 
 <style scoped lang="sass">
   .startMenu
@@ -116,6 +97,7 @@
   .appsGrid
     display: grid
     grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr))
+    overflow: scroll
 
     .startApp
       padding: 1rem 0.75rem
