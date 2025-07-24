@@ -34,7 +34,10 @@
     svg
       width: 1.5rem
       height: 1.5rem
-      opacity: 0.8
+      opacity: 0.7
+
+    p
+      margin: 0
 
     &:hover
       background: colors.$uiBackground

@@ -1,5 +1,7 @@
 :root
   --uiTextPrimary: black
+  --uiTextSecondary: rgba(0, 0, 0, 0.6)
+  --uiTextTertiary: rgba(0, 0, 0, 0.4)
   --uiBackground: rgba(147, 147, 147, 0.4)
   --uiBackgroundAbsolute: white
   --uiAccent: #6618f1
@@ -12,6 +14,8 @@
 @media (prefers-color-scheme: dark)
   :root
     --uiTextPrimary: white
+    --uiTextSecondary: rgba(255, 255, 255, 0.6)
+    --uiTextTertiary: rgba(255, 255, 255, 0.4)
     --uiBackground: rgba(68, 68, 68, 0.4)
     --uiBackgroundAbsolute: black
     --uiAccent: #8851ea
@@ -23,6 +27,8 @@
 
 // Sass aliases
 $uiTextPrimary: var(--uiTextPrimary)
+$uiTextSecondary: var(--uiTextSecondary)
+$uiTextTertiary: var(--uiTextTertiary)
 $uiBackground: var(--uiBackground)
 $uiBackgroundAbsolute: var(--uiBackgroundAbsolute)
 $uiAccent: var(--uiAccent)

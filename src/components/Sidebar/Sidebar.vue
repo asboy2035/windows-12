@@ -16,4 +16,7 @@
     height: 100%
     justify-content: flex-start
     align-items: flex-start
+
+    ::v-deep(p.caption)
+      margin: 0.75rem 0.5rem 0
 </style>

@@ -3,6 +3,7 @@ import SettingsApp from '@/apps/Settings/SettingsApp.vue'
 import AboutApp from '@/apps/About/AboutApp.vue'
 import NotepadApp from '@/apps/Notepad/NotepadApp.vue'
 import AiChatApp from '@/apps/Chat/AiChatApp.vue'
+import FileManagerApp from '@/apps/FileManager/FileManagerApp.vue'
 
 export const installDefaultApps = () => {
   const appsStore = useAppsStore()
@@ -37,5 +38,13 @@ export const installDefaultApps = () => {
     icon: '/icons/Chat.png',
     description: 'C.ai client for win12.',
     component: AiChatApp,
+  })
+
+  appsStore.installApp({
+    id: 'file-manager',
+    name: 'File Explorer',
+    icon: '/icons/FileExplorer.png',
+    description: 'Browse your files',
+    component: FileManagerApp,
   })
 }
