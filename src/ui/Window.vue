@@ -274,7 +274,7 @@
       right: 0.25rem
 
       button
-        --buttonRadius: var(--windowRadius)
+        --buttonRadius: calc(var(--windowRadius) - 0.25rem)
 
         background: transparent
         backdrop-filter: none

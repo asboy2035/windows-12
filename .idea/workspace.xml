@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="update apps store">
+    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="fix context menu, add properties menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apps/FileManager/FileManagerApp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/FileManager/FileManagerApp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PropertiesWindow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PropertiesWindow.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Window.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Window.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +140,7 @@
       <workItem from="1753283272919" duration="13740000" />
       <workItem from="1753342119195" duration="10930000" />
       <workItem from="1753353283308" duration="10100000" />
-      <workItem from="1753375819902" duration="6115000" />
+      <workItem from="1753375819902" duration="7188000" />
     </task>
     <task id="LOCAL-00001" summary="initial code">
       <option name="closed" value="true" />
@@ -228,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753381547731</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix context menu, add properties menu">
+      <option name="closed" value="true" />
+      <created>1753382486906</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1753382486906</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +256,7 @@
     <MESSAGE value="improve window compatibility with hide and show taskbar" />
     <MESSAGE value="add files and file types" />
     <MESSAGE value="update apps store" />
-    <option name="LAST_COMMIT_MESSAGE" value="update apps store" />
+    <MESSAGE value="fix context menu, add properties menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix context menu, add properties menu" />
   </component>
 </project>

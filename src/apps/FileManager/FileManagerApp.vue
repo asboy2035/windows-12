@@ -8,7 +8,6 @@
   import VStack from '@/components/VStack.vue'
   import Sidebar from '@/components/Sidebar/Sidebar.vue'
   import SidebarItem from '@/components/Sidebar/SidebarItem.vue'
-  import ContextMenu from '@/components/ContextMenu.vue'
   import {Icon} from '@iconify/vue'
   import PropertiesWindow from '@/components/PropertiesWindow.vue'
   import { getFileIconPath } from '@/utils/fileIcons'
@@ -24,53 +23,7 @@
   const showPropertiesWindow = ref(false)
   const propertiesItem = ref<IFile | IFolder | null>(null)
 
-  const showContextMenu = ref(false)
-  const contextMenuX = ref(0)
-  const contextMenuY = ref(0)
-  const contextMenuItems = ref<{
-    label: string
-    icon: string
-    action: () => void
-  }[]>([])
-
-  function openContextMenu(event: MouseEvent, item?: IFile | IFolder) {
-    event.preventDefault() // Prevent default browser context menu
-    showContextMenu.value = true
-    contextMenuX.value = event.clientX - 600
-    contextMenuY.value = event.clientY - 400
-
-    let targetItem: IFile | IFolder | null = null
-
-    if (item) { // Right-click on a specific item
-      targetItem = item
-    } else if (selectedItem.value) { // Toolbar button click with an item selected
-      targetItem = selectedItem.value
-    } else { // Toolbar button click with no item selected (show folder context menu)
-      contextMenuItems.value = [
-        { label: 'New Folder', icon: 'fluent:folder-add-16-regular', action: () => alert('New Folder') },
-        { label: 'Paste', icon: 'fluent:clipboard-paste-16-regular', action: () => alert('Paste') },
-        { label: 'View', icon: 'fluent:eye-16-regular', action: () => alert('View options') },
-      ]
-      return // Exit after setting folder context menu
-    }
-
-    if (targetItem.type === 'file') {
-      contextMenuItems.value = [
-        { label: 'Open', icon: 'fluent:open-16-regular', action: () => openFile(targetItem) },
-        { label: 'Download', icon: 'fluent:arrow-download-16-regular', action: () => alert(`Downloading ${targetItem.name}.${targetItem.extension}`) },
-        { label: 'Properties', icon: 'fluent:info-16-regular', action: () => openProperties(targetItem) },
-      ]
-    } else if (targetItem.type === 'folder') {
-      contextMenuItems.value = [
-        { label: 'Open', icon: 'fluent:open-16-regular', action: () => openFolder(targetItem.name) },
-        { label: 'Properties', icon: 'fluent:info-16-regular', action: () => openProperties(targetItem) },
-      ]
-    }
-  }
-
-  function closeContextMenu() {
-    showContextMenu.value = false
-  }
+  
 
   onMounted(() => {
     currentFolderContent.value = fileManagerStore.getFolderContent(currentPath.value)
@@ -110,6 +63,37 @@
     selectedItem.value = item
   }
 
+  function handleOpen() {
+    if (!selectedItem.value) return
+    if (selectedItem.value.type === 'file') {
+      openFile(selectedItem.value)
+    } else {
+      openFolder(selectedItem.value.name)
+    }
+  }
+
+  function handleDelete() {
+    if (!selectedItem.value) {
+      alert('No item selected to delete.')
+      return
+    }
+    alert(`Deleting ${selectedItem.value.name}`)
+    // Implement actual delete logic here
+  }
+
+  function handleProperties() {
+    if (!selectedItem.value) {
+      alert('No item selected to view properties.')
+      return
+    }
+    openProperties(selectedItem.value)
+  }
+
+  function handleNewFolder() {
+    alert(`Creating new folder in ${currentPath.value}`)
+    // Implement actual new folder logic here
+  }
+
   function openProperties(item: IFile | IFolder) {
     propertiesItem.value = item
     showPropertiesWindow.value = true
@@ -127,9 +111,10 @@
     title="File Explorer"
     visual-effect="blur"
     resizable
+    id="fileManager"
   >
     <HStack class="fileManagerContent">
-      <Sidebar>
+      <Sidebar class="fileManagerSidebar">
         <SidebarItem icon="fluent:home-16-regular" title="Home" @click="openFolder('Home')" />
 
         <p class="caption light">Files</p>
@@ -175,9 +160,24 @@
             </button>
           </h-stack>
 
-          <button @click="openContextMenu($event)">
-            <Icon icon="fluent:more-horizontal-16-regular" />
-          </button>
+          <h-stack class="spaced">
+            <button @click="handleOpen">
+              <Icon icon="fluent:folder-open-16-regular" />
+              <span>Open</span>
+            </button>
+            <button @click="handleDelete">
+              <Icon icon="fluent:delete-16-regular" />
+              <span>Delete</span>
+            </button>
+            <button @click="handleProperties">
+              <Icon icon="fluent:info-16-regular" />
+              <span>Properties</span>
+            </button>
+            <button @click="handleNewFolder">
+              <Icon icon="fluent:folder-add-16-regular" />
+              <span>New Folder</span>
+            </button>
+          </h-stack>
         </HStack>
 
         <VStack class="fileList" v-if="viewMode === 'list'">
@@ -188,7 +188,6 @@
             :class="{ selected: selectedItem === item }"
             @click="selectItem(item)"
             @dblclick="item.type === 'folder' ? openFolder(item.name) : openFile(item as IFile)"
-            @contextmenu="openContextMenu($event, item)"
           >
             <h-stack>
               <img :src="getFileIconPath(item)" class="itemIcon" />
@@ -207,7 +206,6 @@
             :class="{ selected: selectedItem === item }"
             @click="selectItem(item)"
             @dblclick="item.type === 'folder' ? openFolder(item.name) : openFile(item as IFile)"
-            @contextmenu="openContextMenu($event, item)"
           >
             <img :src="getFileIconPath(item)" class="itemIcon" />
             <span class="fileName">{{ item.name }}</span>
@@ -217,13 +215,7 @@
       </VStack>
     </HStack>
 
-    <ContextMenu
-      :visible="showContextMenu"
-      :x="contextMenuX"
-      :y="contextMenuY"
-      :items="contextMenuItems"
-      @close="closeContextMenu"
-    />
+    
 
     <PropertiesWindow
       :visible="showPropertiesWindow"
@@ -236,9 +228,16 @@
 <style scoped lang="sass">
   @use "@/styles/colors"
 
+  #fileManager
+    min-width: 50rem
+    min-height: 25rem
+
   .fileManagerContent
     height: 100%
     width: 100%
+
+  .fileManagerSidebar
+    overflow-y: scroll
 
   .mainPanel
     width: 100%
@@ -264,7 +263,7 @@
 
   .fileGrid
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr))
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 10rem))
     gap: 0.75rem
     overflow-y: scroll
 
@@ -303,8 +302,8 @@
       align-items: center
 
       .itemIcon
-        width: 1rem
-        height: 1rem
+        width: 1.25rem
+        height: 1.25rem
         margin-right: 0.5rem
 
       &:hover, &.selected

@@ -5,6 +5,7 @@
   import HStack from '@/components/HStack.vue'
   import VStack from '@/components/VStack.vue'
   import { getFileIconPath } from '@/utils/fileIcons'
+  import {Icon} from '@iconify/vue'
 
   const props = defineProps<{
     item: IFile | IFolder | null
@@ -48,7 +49,7 @@
         </h-stack>
 
         <button @click="emit('close')">
-          close
+          <Icon icon="fluent:dismiss-16-regular" />
         </button>
       </HStack>
 
