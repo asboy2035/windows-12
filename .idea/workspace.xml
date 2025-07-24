@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="improve window compatibility with hide and show taskbar">
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/docx.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/exe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/file.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/gif.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/jpg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/mp4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/music.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/pdf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/png.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/ppt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/icons/fileTypes/zip.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/fileIcons.ts" afterDir="false" />
+    <list default="true" id="8c74b3eb-46db-4651-8cb7-98732e8511f7" name="Changes" comment="update apps store">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/FileExplorer.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/FileExplorer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/fileTypes/File.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/fileTypes/Folder.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icons/fileTypes/TXT.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/icons/fileTypes/txt.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/apps/FileManager/FileManagerApp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/FileManager/FileManagerApp.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stores/fileManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/fileManager.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +138,7 @@
       <workItem from="1753283272919" duration="13740000" />
       <workItem from="1753342119195" duration="10930000" />
       <workItem from="1753353283308" duration="10100000" />
-      <workItem from="1753375819902" duration="5052000" />
+      <workItem from="1753375819902" duration="6115000" />
     </task>
     <task id="LOCAL-00001" summary="initial code">
       <option name="closed" value="true" />
@@ -230,7 +212,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753359768888</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add files and file types">
+      <option name="closed" value="true" />
+      <created>1753381380429</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1753381380429</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update apps store">
+      <option name="closed" value="true" />
+      <created>1753381547731</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1753381547731</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +244,8 @@
     <MESSAGE value="fix lock tab for fullscreen" />
     <MESSAGE value="add hide and show taskbar" />
     <MESSAGE value="improve window compatibility with hide and show taskbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve window compatibility with hide and show taskbar" />
+    <MESSAGE value="add files and file types" />
+    <MESSAGE value="update apps store" />
+    <option name="LAST_COMMIT_MESSAGE" value="update apps store" />
   </component>
 </project>

@@ -10,6 +10,7 @@
   import SidebarItem from '@/components/Sidebar/SidebarItem.vue'
   import ContextMenu from '@/components/ContextMenu.vue'
   import {Icon} from '@iconify/vue'
+  import PropertiesWindow from '@/components/PropertiesWindow.vue'
   import { getFileIconPath } from '@/utils/fileIcons'
 
   const fileManagerStore = useFileManagerStore()
@@ -19,6 +20,9 @@
   const currentFolderContent = ref<(IFile | IFolder)[]>([])
   const selectedItem = ref<IFile | IFolder | null>(null)
   const viewMode = ref<'list' | 'grid'>('grid')
+
+  const showPropertiesWindow = ref(false)
+  const propertiesItem = ref<IFile | IFolder | null>(null)
 
   const showContextMenu = ref(false)
   const contextMenuX = ref(0)
@@ -32,8 +36,8 @@
   function openContextMenu(event: MouseEvent, item?: IFile | IFolder) {
     event.preventDefault() // Prevent default browser context menu
     showContextMenu.value = true
-    contextMenuX.value = event.clientX
-    contextMenuY.value = event.clientY
+    contextMenuX.value = event.clientX - 600
+    contextMenuY.value = event.clientY - 400
 
     let targetItem: IFile | IFolder | null = null
 
@@ -54,12 +58,12 @@
       contextMenuItems.value = [
         { label: 'Open', icon: 'fluent:open-16-regular', action: () => openFile(targetItem) },
         { label: 'Download', icon: 'fluent:arrow-download-16-regular', action: () => alert(`Downloading ${targetItem.name}.${targetItem.extension}`) },
-        { label: 'Properties', icon: 'fluent:info-16-regular', action: () => alert(`Properties of ${targetItem.name}.${targetItem.extension}`) },
+        { label: 'Properties', icon: 'fluent:info-16-regular', action: () => openProperties(targetItem) },
       ]
     } else if (targetItem.type === 'folder') {
       contextMenuItems.value = [
         { label: 'Open', icon: 'fluent:open-16-regular', action: () => openFolder(targetItem.name) },
-        { label: 'Properties', icon: 'fluent:info-16-regular', action: () => alert(`Properties of ${targetItem.name}`) },
+        { label: 'Properties', icon: 'fluent:info-16-regular', action: () => openProperties(targetItem) },
       ]
     }
   }
@@ -104,6 +108,16 @@
 
   function selectItem(item: IFile | IFolder) {
     selectedItem.value = item
+  }
+
+  function openProperties(item: IFile | IFolder) {
+    propertiesItem.value = item
+    showPropertiesWindow.value = true
+  }
+
+  function closePropertiesWindow() {
+    showPropertiesWindow.value = false
+    propertiesItem.value = null
   }
 </script>
 
@@ -209,6 +223,12 @@
       :y="contextMenuY"
       :items="contextMenuItems"
       @close="closeContextMenu"
+    />
+
+    <PropertiesWindow
+      :visible="showPropertiesWindow"
+      :item="propertiesItem"
+      @close="closePropertiesWindow"
     />
   </Window>
 </template>
